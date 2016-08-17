@@ -331,7 +331,7 @@ oneofGet (p,fi) =
 modulePragmas :: Bool -> [ModulePragma]
 modulePragmas templateHaskell =
   [ LanguagePragma src (map Ident $
-      thPragma ++ ["BangPatterns","DeriveDataTypeable","DeriveGeneric","FlexibleInstances","MultiParamTypeClasses"]
+      thPragma ++ ["BangPatterns","FlexibleInstances","MultiParamTypeClasses"]
     )
   , OptionsPragma src (Just GHC) " -fno-warn-unused-imports "
   ]
@@ -619,7 +619,7 @@ descriptorBootModule :: DescriptorInfo -> Module
 descriptorBootModule di
   = let protoName = descName di
         un = unqualName protoName
-        classes = [prelude "Show",prelude "Eq",prelude "Ord",prelude "Typeable",prelude "Data", prelude "Generic"
+        classes = [prelude "Show",prelude "Eq",prelude "Ord"
                   ,private "Mergeable",private "Default"
                   ,private "Wire",private "GPB",private "ReflectDescriptor"
                   , private "TextType", private "TextMsg"
@@ -719,18 +719,12 @@ exportLenses di =
 minimalImports :: [ImportDecl]
 minimalImports =
   [ ImportDecl src (ModuleName "Prelude") True False False Nothing (Just (ModuleName "Prelude'")) Nothing
-  , ImportDecl src (ModuleName "Data.Typeable") True False False Nothing (Just (ModuleName "Prelude'")) Nothing
-  , ImportDecl src (ModuleName "Data.Data") True False False Nothing (Just (ModuleName "Prelude'")) Nothing
-  , ImportDecl src (ModuleName "GHC.Generics") True False False Nothing (Just (ModuleName "Prelude'")) Nothing
   , ImportDecl src (ModuleName "Text.ProtocolBuffers.Header") True False False Nothing (Just (ModuleName "P'")) Nothing ]
 
 standardImports :: Bool -> Bool -> Bool -> [ImportDecl]
 standardImports isEnumMod ext lenses =
   [ ImportDecl src (ModuleName "Prelude") False False False Nothing Nothing (Just (False,ops))
   , ImportDecl src (ModuleName "Prelude") True False False Nothing (Just (ModuleName "Prelude'")) Nothing
-  , ImportDecl src (ModuleName "Data.Typeable") True False False Nothing (Just (ModuleName "Prelude'")) Nothing
-  , ImportDecl src (ModuleName "GHC.Generics") True False False Nothing (Just (ModuleName "Prelude'")) Nothing
-  , ImportDecl src (ModuleName "Data.Data") True False False Nothing (Just (ModuleName "Prelude'")) Nothing
   , ImportDecl src (ModuleName "Text.ProtocolBuffers.Header") True False False Nothing (Just (ModuleName "P'")) Nothing ] ++ lensTH
  where
 #if MIN_VERSION_haskell_src_exts(1, 17, 0)
@@ -1285,8 +1279,8 @@ instanceReflectDescriptor di
 ------------------------------------------------------------------
 
 derives,derivesEnum :: [Deriving]
-derives = map (\ x -> (prelude x,[])) ["Show","Eq","Ord","Typeable","Data","Generic"]
-derivesEnum = map (\ x -> (prelude x,[])) ["Read","Show","Eq","Ord","Typeable","Data","Generic"]
+derives = map (\ x -> (prelude x,[])) ["Show","Eq","Ord"]
+derivesEnum = map (\ x -> (prelude x,[])) ["Read","Show","Eq","Ord"]
 
 -- All of these type names are also exported by Text.ProtocolBuffers.Header via Text.ProtocolBuffers.Basic
 useType :: Int -> Maybe String
