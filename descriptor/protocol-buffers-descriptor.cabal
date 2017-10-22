@@ -1,5 +1,5 @@
 name:           protocol-buffers-descriptor
-version:        2.4.0
+version:        2.4.4
 cabal-version:  >= 1.6
 build-type:     Simple
 license:        BSD3
@@ -23,7 +23,7 @@ source-repository head
 
 Library
   build-depends: base >= 4.7.0 && < 5,
-                 protocol-buffers == 2.4.0,
+                 protocol-buffers == 2.4.4,
                  bytestring,
                  containers
 
@@ -31,7 +31,7 @@ Library
   -- Options is from src-hand-writtern
   Hs-Source-Dirs:  src-auto-generated,src-hand-written
   ghc-options: -O2 -fspec-constr-count=10
-  ghc-prof-options: -auto-all -prof
+  -- ghc-prof-options: -auto-all -prof
   exposed-modules: Text.DescriptorProtos.Options
                    Text.DescriptorProtos
                    Text.DescriptorProtos.DescriptorProto

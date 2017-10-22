@@ -1,5 +1,21 @@
 Newest at the top.
 
+2.4.4
+
+- pr #53. Allow decimal places at the end of line
+
+2.4.3
+
+- pr #50. restrict haskell-src-exts version constraint
+
+2.4.2
+
+- fix version constraints
+
+2.4.1
+
+- issue #10, pr #47. Fixed not to lookup a entity defined in the parent package
+
 2.3.1:
 
 - add Generic deriving
