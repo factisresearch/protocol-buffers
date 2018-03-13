@@ -1,5 +1,21 @@
 Newest at the top.
 
+2.4.8
+
+- pr #58. Fix build for HSE-1.20
+
+2.4.7
+
+- pr #57. Add GHC 8.4 support (add Semigroup instances)
+
+2.4.6
+
+- issue #55. Constraint haskell-src-exts to be < 1.20
+
+2.4.5
+
+- pr #54. Support haskell-src-exts 1.18
+
 2.4.4
 
 - pr #53. Allow decimal places at the end of line
