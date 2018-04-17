@@ -199,11 +199,13 @@ showG g = '\n':concatMap showE g
 showE :: E -> String
 showE (v,n,ls) = unlines $ [ "( "++show n, "  , "++show v, "  , "++show ls, ")" ]
 
-instance Monoid Result where
-  mempty = Result mempty mempty mempty
-  mappend r1 r2 = Result { rKind = Map.unionWith max (rKind r1) (rKind r2)
+instance Semigroup Result where
+  (<>) r1 r2 = Result { rKind = Map.unionWith max (rKind r1) (rKind r2)
                          , rIBoot = mappend (rIBoot r1) (rIBoot r2)
                          , rIKey = mappend (rIKey r1) (rIKey r2) }
+
+instance Monoid Result where
+  mempty = Result mempty mempty mempty
 
 getKind :: Result -> MKey -> VertexKind
 getKind r = let m = rKind r in \n -> Map.findWithDefault Simple n m
