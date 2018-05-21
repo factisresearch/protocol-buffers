@@ -3,4 +3,4 @@ packages:
 - descriptor/
 - hprotoc/
 extra-deps: []
-resolver: nightly-2018-05-21
+resolver: nightly-2018-05-02
