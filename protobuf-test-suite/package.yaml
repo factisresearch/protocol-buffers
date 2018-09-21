@@ -1,0 +1,37 @@
+name: protobuf-test-suite
+version: 0.1.0
+
+library:
+  source-dirs: src
+  dependencies:
+    - base
+    - filepath
+    - process
+    - protocol-buffers
+    - protocol-buffers-descriptor
+
+tests:
+  protobuf-tests:
+    main: Main.hs
+    source-dirs: test/src
+    dependencies:
+      - protocol-buffers
+      - protocol-buffers-descriptor
+      - protobuf-test-suite
+      - base
+      - aeson
+      - text
+      - containers
+      - tasty
+      - tasty-hunit
+      - tasty-quickcheck
+      - QuickCheck
+      - bytestring
+      - utf8-string
+    other-modules:
+      - Text.ProtocolBuffers.Test.QuickCheck
+      - Text.ProtocolBuffers.Test.Tests
+      - Text.ProtocolBuffers.Test.Tests.AddressBook
+      - Text.ProtocolBuffers.Test.Tests.School
+      - Text.ProtocolBuffers.Test.Tests.Films
+
