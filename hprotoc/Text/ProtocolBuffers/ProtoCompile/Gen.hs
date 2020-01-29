@@ -311,7 +311,7 @@ modulePragmas templateHaskell =
   [ LanguagePragma () (map (Ident ()) $
       thPragma ++ ["BangPatterns","FlexibleInstances","MultiParamTypeClasses","OverloadedStrings"]
     )
-  , OptionsPragma () (Just GHC) " -fno-warn-unused-imports "
+  , OptionsPragma () (Just GHC) " -w "
   ]
   where thPragma | templateHaskell = ["TemplateHaskell"]
                  | otherwise       = []
